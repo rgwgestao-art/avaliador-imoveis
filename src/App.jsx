@@ -5,6 +5,8 @@ import LoginPage from './pages/LoginPage'
 import ImoveisListPage from './pages/ImoveisListPage'
 import ImovelFormPage from './pages/ImovelFormPage'
 import ComodosPage from './pages/ComodosPage'
+import CondominioPage from './pages/CondominioPage'
+import BairroPage from './pages/BairroPage'
 
 export default function App() {
   return (
@@ -41,6 +43,22 @@ export default function App() {
             element={
               <ProtectedRoute>
                 <ComodosPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/imoveis/:id/condominio"
+            element={
+              <ProtectedRoute>
+                <CondominioPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/imoveis/:id/bairro"
+            element={
+              <ProtectedRoute>
+                <BairroPage />
               </ProtectedRoute>
             }
           />
