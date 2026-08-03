@@ -3,7 +3,7 @@ import { AuthProvider } from './context/AuthContext'
 import ProtectedRoute from './components/ProtectedRoute'
 import LoginPage from './pages/LoginPage'
 import ImoveisListPage from './pages/ImoveisListPage'
-import EmConstrucaoPage from './pages/EmConstrucaoPage'
+import ImovelFormPage from './pages/ImovelFormPage'
 
 export default function App() {
   return (
@@ -23,7 +23,7 @@ export default function App() {
             path="/imoveis/novo"
             element={
               <ProtectedRoute>
-                <EmConstrucaoPage />
+                <ImovelFormPage />
               </ProtectedRoute>
             }
           />
@@ -31,7 +31,7 @@ export default function App() {
             path="/imoveis/:id"
             element={
               <ProtectedRoute>
-                <EmConstrucaoPage />
+                <ImovelFormPage />
               </ProtectedRoute>
             }
           />
