@@ -19,7 +19,7 @@ export default function LoginPage() {
     setMensagem('')
     setCarregando(true)
 
-    const { error } =
+    const { data, error } =
       modo === 'login' ? await signIn(email, password) : await signUp(email, password)
 
     setCarregando(false)
@@ -29,7 +29,7 @@ export default function LoginPage() {
       return
     }
 
-    if (modo === 'cadastro') {
+    if (modo === 'cadastro' && !data?.session) {
       setMensagem('Cadastro realizado! Verifique seu e-mail para confirmar a conta antes de entrar.')
       return
     }
