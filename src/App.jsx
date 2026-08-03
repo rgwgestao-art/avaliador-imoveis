@@ -7,6 +7,7 @@ import ImovelFormPage from './pages/ImovelFormPage'
 import ComodosPage from './pages/ComodosPage'
 import CondominioPage from './pages/CondominioPage'
 import BairroPage from './pages/BairroPage'
+import DetalhePage from './pages/DetalhePage'
 
 export default function App() {
   return (
@@ -32,6 +33,14 @@ export default function App() {
           />
           <Route
             path="/imoveis/:id"
+            element={
+              <ProtectedRoute>
+                <DetalhePage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/imoveis/:id/editar"
             element={
               <ProtectedRoute>
                 <ImovelFormPage />

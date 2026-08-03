@@ -107,7 +107,7 @@ export default function ImovelFormPage() {
 
   function handleSalvarEContinuar() {
     salvar((novoId) => {
-      if (novoId) navigate(`/imoveis/${novoId}`, { replace: true })
+      if (novoId) navigate(`/imoveis/${novoId}/editar`, { replace: true })
     })
   }
 
@@ -131,6 +131,12 @@ export default function ImovelFormPage() {
       <main className="max-w-2xl mx-auto px-4 py-6">
         {emEdicao && (
           <div className="bg-white rounded-lg shadow-sm p-4 mb-4 flex flex-wrap gap-2">
+            <Link
+              to={`/imoveis/${id}`}
+              className="rounded-md border border-slate-300 text-slate-700 text-sm font-medium px-4 py-2 hover:bg-slate-50"
+            >
+              Ver detalhes
+            </Link>
             <Link
               to={`/imoveis/${id}/comodos`}
               className="rounded-md border border-slate-300 text-slate-700 text-sm font-medium px-4 py-2 hover:bg-slate-50"

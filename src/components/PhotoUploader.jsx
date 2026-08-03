@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react'
 import { supabase } from '../lib/supabaseClient'
-
-const BUCKET = 'imoveis-fotos'
-const URL_EXPIRA_SEGUNDOS = 3600
+import { BUCKET_FOTOS, getSignedUrls } from '../lib/storage'
 
 export default function PhotoUploader({ bucketPath, fotos, onChange }) {
   const [urlsAssinadas, setUrlsAssinadas] = useState({})
@@ -12,18 +10,9 @@ export default function PhotoUploader({ bucketPath, fotos, onChange }) {
   useEffect(() => {
     let cancelado = false
 
-    async function carregarUrls() {
-      const entradas = await Promise.all(
-        (fotos ?? []).map(async (caminho) => {
-          const { data } = await supabase.storage.from(BUCKET).createSignedUrl(caminho, URL_EXPIRA_SEGUNDOS)
-          return [caminho, data?.signedUrl]
-        })
-      )
-      if (!cancelado) setUrlsAssinadas(Object.fromEntries(entradas))
-    }
-
-    if (fotos?.length) carregarUrls()
-    else setUrlsAssinadas({})
+    getSignedUrls(fotos).then((urls) => {
+      if (!cancelado) setUrlsAssinadas(urls)
+    })
 
     return () => {
       cancelado = true
@@ -41,7 +30,7 @@ export default function PhotoUploader({ bucketPath, fotos, onChange }) {
     for (const arquivo of arquivos) {
       const nomeSanitizado = arquivo.name.replace(/[^\w.\-]/g, '_')
       const caminho = `${bucketPath}/${Date.now()}-${nomeSanitizado}`
-      const { error } = await supabase.storage.from(BUCKET).upload(caminho, arquivo)
+      const { error } = await supabase.storage.from(BUCKET_FOTOS).upload(caminho, arquivo)
       if (error) {
         setErro(error.message)
       } else {
@@ -58,7 +47,7 @@ export default function PhotoUploader({ bucketPath, fotos, onChange }) {
 
   async function handleRemover(caminho) {
     setErro('')
-    const { error } = await supabase.storage.from(BUCKET).remove([caminho])
+    const { error } = await supabase.storage.from(BUCKET_FOTOS).remove([caminho])
     if (error) {
       setErro(error.message)
       return
