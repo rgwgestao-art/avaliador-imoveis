@@ -129,6 +129,17 @@ export default function ImovelFormPage() {
       </header>
 
       <main className="max-w-2xl mx-auto px-4 py-6">
+        {emEdicao && (
+          <div className="bg-white rounded-lg shadow-sm p-4 mb-4 flex flex-wrap gap-2">
+            <Link
+              to={`/imoveis/${id}/comodos`}
+              className="rounded-md border border-slate-300 text-slate-700 text-sm font-medium px-4 py-2 hover:bg-slate-50"
+            >
+              Avaliar cômodos
+            </Link>
+          </div>
+        )}
+
         <div className="bg-white rounded-lg shadow-sm p-6 space-y-5">
           <div>
             <label className="block text-sm font-medium text-slate-700 mb-1" htmlFor="endereco">

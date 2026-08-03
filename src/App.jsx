@@ -4,6 +4,7 @@ import ProtectedRoute from './components/ProtectedRoute'
 import LoginPage from './pages/LoginPage'
 import ImoveisListPage from './pages/ImoveisListPage'
 import ImovelFormPage from './pages/ImovelFormPage'
+import ComodosPage from './pages/ComodosPage'
 
 export default function App() {
   return (
@@ -32,6 +33,14 @@ export default function App() {
             element={
               <ProtectedRoute>
                 <ImovelFormPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/imoveis/:imovelId/comodos"
+            element={
+              <ProtectedRoute>
+                <ComodosPage />
               </ProtectedRoute>
             }
           />
