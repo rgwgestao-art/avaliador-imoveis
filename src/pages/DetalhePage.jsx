@@ -141,8 +141,18 @@ export default function DetalhePage() {
         <div className="max-w-3xl mx-auto px-4 py-4 flex items-center justify-between">
           <div>
             <h1 className="text-lg font-semibold text-slate-800">{imovel.endereco || 'Endereço não informado'}</h1>
-            <div className="mt-1">
+            <div className="mt-1 flex items-center gap-3">
               <StarDisplay nota={imovel.nota_geral} />
+              {imovel.link_anuncio && (
+                <a
+                  href={imovel.link_anuncio}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-blue-600 hover:underline"
+                >
+                  Ver anúncio ↗
+                </a>
+              )}
             </div>
           </div>
           <div className="flex items-center gap-3">

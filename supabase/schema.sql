@@ -65,6 +65,7 @@ create table imoveis (
   vagas_garagem smallint,
   idade_predio smallint,
   andar text,
+  link_anuncio text,
   valor_anuncio numeric(12, 2),
   valor_condominio numeric(12, 2),
   foto_capa_url text,

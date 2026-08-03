@@ -12,6 +12,7 @@ const camposIniciais = {
   vagas_garagem: '',
   idade_predio: '',
   andar: '',
+  link_anuncio: '',
   valor_anuncio: null,
   valor_condominio: null,
 }
@@ -47,6 +48,7 @@ export default function ImovelFormPage() {
           vagas_garagem: data.vagas_garagem ?? '',
           idade_predio: data.idade_predio ?? '',
           andar: data.andar ?? '',
+          link_anuncio: data.link_anuncio ?? '',
           valor_anuncio: data.valor_anuncio,
           valor_condominio: data.valor_condominio,
         })
@@ -78,6 +80,7 @@ export default function ImovelFormPage() {
       vagas_garagem: paraNumeroOuNull(campos.vagas_garagem),
       idade_predio: paraNumeroOuNull(campos.idade_predio),
       andar: campos.andar || null,
+      link_anuncio: campos.link_anuncio || null,
       valor_anuncio: campos.valor_anuncio,
       valor_condominio: campos.valor_condominio,
     }
@@ -169,6 +172,20 @@ export default function ImovelFormPage() {
               value={campos.endereco}
               onChange={(e) => handleCampoChange('endereco', e.target.value)}
               placeholder="Rua, número, bairro"
+              className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-400"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-slate-700 mb-1" htmlFor="link_anuncio">
+              Link do anúncio
+            </label>
+            <input
+              id="link_anuncio"
+              type="url"
+              value={campos.link_anuncio}
+              onChange={(e) => handleCampoChange('link_anuncio', e.target.value)}
+              placeholder="https://..."
               className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-400"
             />
           </div>
